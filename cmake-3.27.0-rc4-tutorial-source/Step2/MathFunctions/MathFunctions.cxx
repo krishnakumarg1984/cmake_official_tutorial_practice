@@ -16,7 +16,7 @@ double sqrt(double x) {
     return detail::mysqrt(x);
 #else
     return std::sqrt(x);
-#endif  // DEBUG
+#endif
 }
 
 }  // namespace mathfunctions

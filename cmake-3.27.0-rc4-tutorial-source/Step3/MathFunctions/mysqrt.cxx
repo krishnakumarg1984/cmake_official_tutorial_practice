@@ -2,8 +2,7 @@
 
 #include <iostream>
 
-namespace mathfunctions {
-namespace detail {
+namespace mathfunctions::detail {
 // a hack square root calculation using simple operations
 double mysqrt(double x)
 {
@@ -24,5 +23,4 @@ double mysqrt(double x)
   }
   return result;
 }
-}
-}
+}  // namespace mathfunctions::detail

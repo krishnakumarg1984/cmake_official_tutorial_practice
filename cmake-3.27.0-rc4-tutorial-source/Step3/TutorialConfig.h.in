@@ -1,3 +1,10 @@
 // the configured options and settings for Tutorial
-#define Tutorial_VERSION_MAJOR @Tutorial_VERSION_MAJOR@
-#define Tutorial_VERSION_MINOR @Tutorial_VERSION_MINOR@
+#pragma once
+
+// clang-format off
+
+// the configured options and settings for Tutorial
+#define Tutorial_VERSION_MAJOR "@Tutorial_VERSION_MAJOR@"
+#define Tutorial_VERSION_MINOR "@Tutorial_VERSION_MINOR@"
+
+// clang-format on
