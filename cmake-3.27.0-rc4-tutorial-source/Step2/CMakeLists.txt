@@ -6,6 +6,15 @@ project(Tutorial VERSION 1.0 LANGUAGES CXX)
 # specify the C++ standard
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+# Create a symlink to compile_commands.json located in CMAKE_BINARY_DIR to the project root (works across filesystems)
+execute_process(
+    COMMAND
+        ${CMAKE_COMMAND} -E create_symlink
+        ${CMAKE_BINARY_DIR}/compile_commands.json
+        ${CMAKE_SOURCE_DIR}/compile_commands.json
+)
 
 # configure a header file to pass some of the CMake settings
 # to the source code
