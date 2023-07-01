@@ -1,7 +1,5 @@
 #pragma once
 
-namespace mathfunctions {
-namespace detail {
+namespace mathfunctions::detail {
 double mysqrt(double x);
-}
-}
+}  // namespace mathfunctions::detail
