@@ -8,10 +8,9 @@ project(Tutorial VERSION 1.0 LANGUAGES CXX)
 #   Hint: use add_library() with the INTERFACE signature
 # * Add compiler feature cxx_std_11 to tutorial_compiler_flags
 #   Hint: Use target_compile_features()
+add_library(tutorial_compiler_flags INTERFACE)
+target_compile_features(tutorial_compiler_flags INTERFACE cxx_std_11)
 
-# specify the C++ standard
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Create a symlink to compile_commands.json located in CMAKE_BINARY_DIR to the project root (works across filesystems)
@@ -36,7 +35,7 @@ add_executable(Tutorial tutorial.cxx)
 
 # TODO 5: Link Tutorial to tutorial_compiler_flags
 
-target_link_libraries(Tutorial PRIVATE MathFunctions)
+target_link_libraries(Tutorial PRIVATE MathFunctions tutorial_compiler_flags)
 
 # TODO 3: Remove use of EXTRA_INCLUDES
 
