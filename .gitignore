@@ -446,3 +446,5 @@ MigrationBackup/
 !.pdf
 !.root
 rnr-*.json
+
+**/cppcheck_build/

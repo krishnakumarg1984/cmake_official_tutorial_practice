@@ -58,6 +58,7 @@ null_ls.register {
   diagnostics.cpplint,
   diagnostics.shellcheck.with { diagnostics_format = "[#{c}] #{m} (#{s})" },
   formatting.clang_format,
+  formatting.gersemi,
   formatting.shfmt,
   formatting.stylua,
 }
@@ -115,20 +116,20 @@ null_ls.enable {}
 -- diagnostics.yamllint,
 -- }}}
 
-local status_ok_nvim_lint, nvim_lint = pcall(require, "lint")
-if not status_ok_nvim_lint then
-  return
-end
-nvim_lint.linters_by_ft = {
-  cmake = { "cmakelint" },
-  -- cpp = { "clangtidy", "flawfinder" },
-  cpp = {},
-  java = { "checkstyle" },
-  latex = { "lacheck" },
-  python = { "pycodestyle" },
-  tex = { "lacheck" },
-  rst = { "rstlint" },
-}
+-- local status_ok_nvim_lint, nvim_lint = pcall(require, "lint")
+-- if not status_ok_nvim_lint then
+--   return
+-- end
+-- nvim_lint.linters_by_ft = {
+--   cmake = { "cmakelint" },
+--   -- cpp = { "clangtidy", "flawfinder" },
+--   cpp = {},
+--   java = { "checkstyle" },
+--   latex = { "lacheck" },
+--   python = { "pycodestyle" },
+--   tex = { "lacheck" },
+--   rst = { "rstlint" },
+-- }
 
 local utils = require "astronvim.utils"
 
@@ -143,7 +144,7 @@ local utils = require "astronvim.utils"
 -- end
 
 -- vim.cmd [[autocmd BufWritePost * lua require('lint').try_lint()]]
-vim.cmd [[
-autocmd BufReadPost * lua require('lint').try_lint()
-autocmd BufWritePost * lua require('lint').try_lint()
-]]
+-- vim.cmd [[
+-- autocmd BufReadPost * lua require('lint').try_lint()
+-- autocmd BufWritePost * lua require('lint').try_lint()
+-- ]]
