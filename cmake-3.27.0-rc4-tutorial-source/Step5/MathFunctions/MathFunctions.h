@@ -2,4 +2,4 @@
 
 namespace mathfunctions {
 double sqrt(double x);
-}
+}  // namespace mathfunctions
