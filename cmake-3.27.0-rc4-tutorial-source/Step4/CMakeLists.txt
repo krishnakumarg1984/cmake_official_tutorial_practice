@@ -3,11 +3,22 @@
 cmake_minimum_required(VERSION 3.10)
 
 # set the project name and version
-project(Tutorial VERSION 1.0)
+project(Tutorial VERSION 1.0 LANGUAGES CXX)
 
 # specify the C++ standard
 add_library(tutorial_compiler_flags INTERFACE)
 target_compile_features(tutorial_compiler_flags INTERFACE cxx_std_11)
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+# Create a symlink to compile_commands.json located in CMAKE_BINARY_DIR to the project root (works across filesystems)
+execute_process(
+    COMMAND
+        ${CMAKE_COMMAND} -E create_symlink
+        ${CMAKE_BINARY_DIR}/compile_commands.json
+        ${CMAKE_SOURCE_DIR}/compile_commands.json
+)
+
 
 # TODO 2: Create helper variables to determine which compiler we are using:
 # * Create a new variable gcc_like_cxx that is true if we are using CXX and
@@ -35,10 +46,8 @@ add_subdirectory(MathFunctions)
 # add the executable
 add_executable(Tutorial tutorial.cxx)
 
-target_link_libraries(Tutorial PUBLIC MathFunctions tutorial_compiler_flags)
+target_link_libraries(Tutorial PRIVATE MathFunctions tutorial_compiler_flags)
 
 # add the binary tree to the search path for include files
 # so that we will find TutorialConfig.h
-target_include_directories(Tutorial PUBLIC
-                           "${PROJECT_BINARY_DIR}"
-                           )
+target_include_directories(Tutorial PRIVATE "${PROJECT_BINARY_DIR}")
