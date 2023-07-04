@@ -6,6 +6,7 @@ find . -name "*.x" -print -delete 2>/dev/null
 find . -name "*.out" -print -delete 2>/dev/null
 find . -name "*.su" -print -delete 2>/dev/null
 find . -name "cppcheck_suppressions.txt" -size 0 -print -delete 2>/dev/null
+find . -name "compile_commands.json" -print -delete 2>/dev/null
 find . -type d -name "*.out" -print -exec rm -rf "{}" \; 2>/dev/null
 find . -type d -name "cppcheck_build" -print -exec rm -rf "{}" \; 2>/dev/null
 find . -type d -name ".ccls-cache" -print -exec rm -rf "{}" \; 2>/dev/null
