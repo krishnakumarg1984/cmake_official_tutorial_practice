@@ -18,11 +18,15 @@ execute_process(
 )
 # add compiler warning flags just when building this project via
 # the BUILD_INTERFACE genex
-set(gcc_like_cxx "$<COMPILE_LANG_AND_ID:CXX,ARMClang,AppleClang,Clang,Cray,GNU,INTEL,IntelLLVM,LCC>")
+set(gcc_like_cxx
+    "$<COMPILE_LANG_AND_ID:CXX,ARMClang,AppleClang,Clang,Cray,GNU,INTEL,IntelLLVM,LCC>"
+)
 set(msvc_cxx "$<COMPILE_LANG_AND_ID:CXX,MSVC>")
-target_compile_options(tutorial_compiler_flags INTERFACE
-  "$<${gcc_like_cxx}:$<BUILD_INTERFACE:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused>>"
-  "$<${msvc_cxx}:$<BUILD_INTERFACE:-W3>>"
+target_compile_options(
+    tutorial_compiler_flags
+    INTERFACE
+        "$<${gcc_like_cxx}:$<BUILD_INTERFACE:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused>>"
+        "$<${msvc_cxx}:$<BUILD_INTERFACE:-W3>>"
 )
 
 # configure a header file to pass some of the CMake settings
@@ -39,15 +43,15 @@ target_link_libraries(Tutorial PUBLIC MathFunctions tutorial_compiler_flags)
 
 # add the binary tree to the search path for include files
 # so that we will find TutorialConfig.h
-target_include_directories(Tutorial PRIVATE
-                           "${PROJECT_BINARY_DIR}"
-                           )
+target_include_directories(Tutorial PRIVATE "${PROJECT_BINARY_DIR}")
 
 # TODO 3: Install Tutorial in the bin directory
 # Hint: Use the TARGETS and DESTINATION parameters
+install(TARGETS Tutorial DESTINATION bin)
 
 # TODO 4: Install TutorialConfig.h to the include directory
 # Hint: Use the FILES and DESTINATION parameters
+install(FILES "${PROJECT_BINARY_DIR}/TutorialConfig.h" DESTINATION include)
 
 # TODO 5: Enable testing
 
